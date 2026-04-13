@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Teacher Dashboard</title>
+    <style>
+        .sidebar-hidden {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .sidebar-visible {
+            transform: translateX(0);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        @media (min-width: 1024px) {
+            .sidebar-hidden {
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 font-sans">
+
+    <div class="min-h-screen flex flex-col lg:flex-row">
+
+        <!-- Mobile Header -->
+        <header
+            class="lg:hidden bg-gradient-to-r from-blue-500 to-blue-700 text-white px-4 py-3 flex items-center justify-between sticky top-0 z-40 shadow-md">
+            <div class="flex items-center gap-3">
+                <img src="https://i.pravatar.cc/32" class="rounded-full" />
+                <div>
+                    <h1 class="font-semibold text-sm">Erin Carter</h1>
+                    <p class="text-xs opacity-75">Instructor</p>
+                </div>
+            </div>
+            <button id="menuBtn" class="focus:outline-none p-1.5 hover:bg-white/20 rounded-lg transition">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+        </header>
+
+        <!-- Sidebar -->
+        <aside id="sidebar"
+            class="sidebar-hidden lg:sidebar-visible fixed lg:relative w-64 bg-gradient-to-b from-blue-500 to-blue-700 text-white p-5 rounded-r-3xl top-0 left-0 h-screen lg:h-auto z-30 overflow-y-auto">
+
+            <div class="flex items-center justify-between lg:block mb-8">
+                <div class="flex items-center gap-3">
+                    <img src="https://i.pravatar.cc/40" class="rounded-full" />
+                    <div>
+                        <h2 class="font-semibold text-sm sm:text-base">Erin Carter</h2>
+                        <p class="text-xs opacity-80">Instructor</p>
+                    </div>
+                </div>
+                <button id="closeBtn"
+                    class="lg:hidden focus:outline-none p-1.5 hover:bg-white/20 rounded-lg transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+
+            <nav>
+                <ul class="space-y-3 text-sm">
+                    <li class="bg-white/20 p-3 rounded-lg cursor-pointer hover:bg-white/30 transition">Dashboard</li>
+                    <li class="p-3 cursor-pointer hover:bg-white/20 rounded-lg transition">Students</li>
+                    <li class="p-3 cursor-pointer hover:bg-white/20 rounded-lg transition">Attendance</li>
+                    <li class="p-3 cursor-pointer hover:bg-white/20 rounded-lg transition">Assignments</li>
+                    <li class="p-3 cursor-pointer hover:bg-white/20 rounded-lg transition">Schedule</li>
+                    <li class="p-3 cursor-pointer hover:bg-white/20 rounded-lg transition">Analytics</li>
+                    <li class="p-3 cursor-pointer hover:bg-white/20 rounded-lg transition">Messages</li>
+                    <li class="p-3 cursor-pointer hover:bg-white/20 rounded-lg transition">Reports</li>
+                    <li class="p-3 cursor-pointer hover:bg-white/20 rounded-lg transition">Settings</li>
+                </ul>
+            </nav>
+
+            <button
+                class="mt-10 bg-white text-blue-600 w-full py-3 rounded-xl font-semibold hover:bg-gray-100 transition text-sm sm:text-base">
+                Log Out
+            </button>
+
+        </aside>
+
+        <!-- Overlay for mobile menu -->
+        <div id="overlay" class="hidden fixed inset-0 bg-black/50 z-20 lg:hidden"></div>
+
+        <!-- Main -->
+        <main class="flex-1 w-full overflow-y-auto pb-8">
+
+            <!-- Welcome Section -->
+            <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 sm:p-6 md:p-8">
+                <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800">Welcome back, Erin!</h1>
+                <p class="text-gray-600 text-sm mt-1 hidden sm:block">Manage your classroom and track student progress
+                </p>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="px-4 sm:px-6 md:px-8 py-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <button
+                    class="bg-white px-4 py-3 rounded-xl shadow hover:shadow-md transition font-medium text-sm sm:text-base">+
+                    Add Assignment</button>
+                <button
+                    class="bg-white px-4 py-3 rounded-xl shadow hover:shadow-md transition font-medium text-sm sm:text-base">Mark
+                    Attendance</button>
+                <button
+                    class="bg-white px-4 py-3 rounded-xl shadow hover:shadow-md transition font-medium text-sm sm:text-base">View
+                    Reports</button>
+            </div>
+
+            <!-- Cards -->
+            <div class="px-4 sm:px-6 md:px-8 py-4">
+                <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+
+                    <div
+                        class="bg-yellow-400 text-white p-4 sm:p-5 md:p-6 rounded-2xl shadow-md hover:shadow-lg transition">
+                        <h2 class="text-2xl sm:text-3xl font-bold">24</h2>
+                        <p class="text-sm sm:text-base opacity-90">Total Students</p>
+                    </div>
+
+                    <div
+                        class="bg-green-400 text-white p-4 sm:p-5 md:p-6 rounded-2xl shadow-md hover:shadow-lg transition">
+                        <h2 class="text-2xl sm:text-3xl font-bold">91%</h2>
+                        <p class="text-sm sm:text-base opacity-90">Attendance</p>
+                    </div>
+
+                    <div
+                        class="bg-red-400 text-white p-4 sm:p-5 md:p-6 rounded-2xl shadow-md hover:shadow-lg transition">
+                        <h2 class="text-2xl sm:text-3xl font-bold">4</h2>
+                        <p class="text-sm sm:text-base opacity-90">Pending</p>
+                    </div>
+
+                    <div
+                        class="bg-blue-400 text-white p-4 sm:p-5 md:p-6 rounded-2xl shadow-md hover:shadow-lg transition">
+                        <h2 class="text-2xl sm:text-3xl font-bold">2</h2>
+                        <p class="text-sm sm:text-base opacity-90">Upcoming Exams</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Main Content Grid -->
+            <div class="px-4 sm:px-6 md:px-8 py-4">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
+
+                    <!-- Student Table Section -->
+                    <section class="lg:col-span-2 bg-white rounded-2xl shadow-md overflow-hidden">
+
+                        <div class="border-b border-gray-200 p-4 sm:p-5 md:p-6">
+                            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+                                <h2 class="text-lg sm:text-xl font-semibold text-gray-800">Student Management</h2>
+                                <div class="flex flex-wrap gap-2">
+                                    <span
+                                        class="px-3 py-1.5 rounded-full bg-gray-100 text-gray-700 text-xs cursor-pointer hover:bg-gray-200 transition">All</span>
+                                    <span
+                                        class="px-3 py-1.5 rounded-full bg-red-100 text-red-600 text-xs cursor-pointer hover:bg-red-200 transition">Low</span>
+                                    <span
+                                        class="px-3 py-1.5 rounded-full bg-yellow-100 text-yellow-600 text-xs cursor-pointer hover:bg-yellow-200 transition">Avg</span>
+                                    <span
+                                        class="px-3 py-1.5 rounded-full bg-green-100 text-green-600 text-xs cursor-pointer hover:bg-green-200 transition">Good</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-sm">
+                                <thead class="bg-gray-50 border-b border-gray-200">
+                                    <tr class="text-gray-600 text-xs sm:text-sm font-semibold">
+                                        <th class="text-left p-3 sm:p-4">Name</th>
+                                        <th class="text-left p-3 sm:p-4">Attendance</th>
+
+                                        <th class="text-left p-3 sm:p-4 hidden md:table-cell">Performance</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody class="divide-y divide-gray-100">
+                                    <tr class="hover:bg-gray-50 transition">
+                                        <td class="p-3 sm:p-4 flex items-center gap-2">
+                                            <img src="https://i.pravatar.cc/30" class="rounded-full w-8 h-8" />
+                                            <span class="text-gray-700 text-sm font-medium">Jacob Lee</span>
+                                        </td>
+                                        <td class="p-3 sm:p-4 text-green-600 font-semibold text-sm">86%</td>
+                                        <td
+                                            class="p-3 sm:p-4 hidden md:table-cell text-green-600 font-semibold text-sm">
+                                            Good</td>
+                                    </tr>
+
+                                    <tr class="hover:bg-gray-50 transition">
+                                        <td class="p-3 sm:p-4 flex items-center gap-2">
+                                            <img src="https://i.pravatar.cc/31" class="rounded-full w-8 h-8" />
+                                            <span class="text-gray-700 text-sm font-medium">Sarah Kim</span>
+                                        </td>
+                                        <td class="p-3 sm:p-4 text-orange-600 font-semibold text-sm">85%</td>
+                                        <td class="p-3 sm:p-4 hidden md:table-cell text-yellow-400 font-semibold text-sm">
+                                            Avg</td>
+                                    </tr>
+
+                                    <tr class="hover:bg-gray-50 transition">
+                                        <td class="p-3 sm:p-4 flex items-center gap-2">
+                                            <img src="https://i.pravatar.cc/32" class="rounded-full w-8 h-8" />
+                                            <span class="text-gray-700 text-sm font-medium">David Brown</span>
+                                        </td>
+                                        <td class="p-3 sm:p-4 text-orange-600 font-semibold text-sm">65%</td>
+
+                                        <td class="p-3 sm:p-4 hidden md:table-cell text-red-600 font-semibold text-sm">
+                                            low</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="p-3 sm:p-4 border-t border-gray-200 text-center">
+                            <button class="text-blue-600 hover:text-blue-800 text-sm font-medium">View All Students
+                                →</button>
+                        </div>
+
+                    </section>
+
+                    <!-- Right Sidebar -->
+                    <aside class="space-y-4 sm:space-y-6">
+
+                        <!-- Pending Assignments Card -->
+                        <div class="bg-white rounded-2xl shadow-md overflow-hidden">
+                            <div class="border-b border-gray-200 p-4 sm:p-5">
+                                <div class="flex items-center justify-between">
+                                    <h2 class="font-semibold text-gray-800 text-sm sm:text-base">Pending Assignments
+                                    </h2>
+                                    <span class="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded-full">4</span>
+                                </div>
+                            </div>
+
+                            <ul class="divide-y divide-gray-100 p-4 sm:p-5 space-y-3 max-h-80 overflow-y-auto">
+                                <li class="flex justify-between items-center pb-3 text-sm">
+                                    <span class="text-gray-700 font-medium">jacob</span>
+                                    <span class="text-gray-500 text-xs">Apr 23</span>
+                                </li>
+                                <li class="flex justify-between items-center pb-3 text-sm">
+                                    <span class="text-gray-700 font-medium">jerry</span>
+                                    <span class="text-gray-500 text-xs">Apr 25</span>
+                                </li>
+                                <li class="flex justify-between items-center pb-3 text-sm">
+                                    <span class="text-gray-700 font-medium">adam</span>
+                                    <span class="text-gray-500 text-xs">Apr 27</span>
+                                </li>
+                                <li class="flex justify-between items-center text-sm">
+                                    <span class="text-gray-700 font-medium">eve</span>
+                                    <span class="text-gray-500 text-xs">Apr 29</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Schedule Card -->
+                        <div class="bg-white rounded-2xl shadow-md overflow-hidden">
+                            <div class="border-b border-gray-200 p-4 sm:p-5">
+                                <h2 class="font-semibold text-gray-800 text-sm sm:text-base">Today's Schedule</h2>
+                            </div>
+
+                            <ul class="divide-y divide-gray-100 p-4 sm:p-5 space-y-3">
+                                <li class="flex justify-between items-center pb-3 text-sm">
+                                    <div>
+                                        <p class="text-gray-700 font-medium">Math</p>
+                                        <p class="text-gray-500 text-xs">Room 101</p>
+                                    </div>
+                                    <span class="text-gray-600 font-semibold text-sm">9:00 AM</span>
+                                </li>
+                                <li class="flex justify-between items-center pb-3 text-sm">
+                                    <div>
+                                        <p class="text-gray-700 font-medium">Science</p>
+                                        <p class="text-gray-500 text-xs">Lab</p>
+                                    </div>
+                                    <span class="text-gray-600 font-semibold text-sm">4:00 PM</span>
+                                </li>
+                                <li class="flex justify-between items-center text-sm">
+                                    <div>
+                                        <p class="text-gray-700 font-medium">History</p>
+                                        <p class="text-gray-500 text-xs">Room 205</p>
+                                    </div>
+                                    <span class="text-gray-600 font-semibold text-sm">5:00 PM</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </aside>
+
+                </div>
+            </div>
+
+        </main>
+
+    </div>
+    </div>
+
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const closeBtn = document.getElementById('closeBtn');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+
+        // Open menu
+        menuBtn.addEventListener('click', () => {
+            sidebar.classList.remove('sidebar-hidden');
+            sidebar.classList.add('sidebar-visible');
+            overlay.classList.remove('hidden');
+        });
+
+        // Close menu
+        closeBtn.addEventListener('click', () => {
+            sidebar.classList.add('sidebar-hidden');
+            sidebar.classList.remove('sidebar-visible');
+            overlay.classList.add('hidden');
+        });
+
+        // Close menu when clicking overlay
+        overlay.addEventListener('click', () => {
+            sidebar.classList.add('sidebar-hidden');
+            sidebar.classList.remove('sidebar-visible');
+            overlay.classList.add('hidden');
+        });
+
+        // Close menu on window resize to desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 1024) {
+                sidebar.classList.remove('sidebar-hidden');
+                sidebar.classList.add('sidebar-visible');
+                overlay.classList.add('hidden');
+            }
+        });
+    </script>
+
+</body>
+
+</html>
