@@ -71,7 +71,19 @@
             <nav>
                 <ul class="space-y-3 text-sm">
                     <li class="bg-white/20 p-3 rounded-lg cursor-pointer hover:bg-white/30 transition">Dashboard</li>
-                    <li class="p-3 cursor-pointer hover:bg-white/20 rounded-lg transition">Students</li>
+                    <li class="space-y-1">
+                        <button id="classesToggle" class="w-full flex items-center justify-between p-3 hover:bg-white/20 rounded-lg transition text-left">
+                            <span>Classes</span>
+                            <svg id="classesIcon" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <ul id="classesMenu" class="hidden space-y-1 pl-3">
+                            <li class="p-2 rounded-lg hover:bg-white/20 transition cursor-pointer">Math 101</li>
+                            <li class="p-2 rounded-lg hover:bg-white/20 transition cursor-pointer">Science 202</li>
+                            <li class="p-2 rounded-lg hover:bg-white/20 transition cursor-pointer">History 303</li>
+                        </ul>
+                    </li>
                     <li class="p-3 cursor-pointer hover:bg-white/20 rounded-lg transition">Attendance</li>
                     <li class="p-3 cursor-pointer hover:bg-white/20 rounded-lg transition">Assignments</li>
                     <li class="p-3 cursor-pointer hover:bg-white/20 rounded-lg transition">Schedule</li>
@@ -331,6 +343,16 @@
                 sidebar.classList.add('sidebar-visible');
                 overlay.classList.add('hidden');
             }
+        });
+
+        // Classes dropdown toggle
+        const classesToggle = document.getElementById('classesToggle');
+        const classesMenu = document.getElementById('classesMenu');
+        const classesIcon = document.getElementById('classesIcon');
+
+        classesToggle.addEventListener('click', () => {
+            classesMenu.classList.toggle('hidden');
+            classesIcon.classList.toggle('rotate-180');
         });
     </script>
 
