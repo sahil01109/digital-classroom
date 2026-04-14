@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+tailwind.config = {
+  darkMode: 'class'
+}
+</script>
+
+<title>Student Dashboard</title>
+</head>
+
+<body class="bg-gray-100 dark:bg-gray-900 dark:text-white transition duration-300">
+
+<!-- Toast -->
+<div id="toast" class="fixed top-5 right-5 hidden px-4 py-2 rounded-lg shadow-lg z-50 bg-black text-white dark:bg-white dark:text-black"></div>
+
+<div class="flex min-h-screen">
+
+  <!-- Overlay -->
+  <div id="sidebarOverlay" class="hidden fixed inset-0 bg-black/50 md:hidden z-30" onclick="toggleSidebar()"></div>
+
+  <!-- Sidebar -->
+  <div id="sidebar" class="w-64 bg-gradient-to-b from-blue-500 to-blue-700 dark:from-gray-800 dark:to-gray-900 text-white p-5 rounded-r-3xl fixed md:static transform -translate-x-full md:translate-x-0 transition h-screen md:h-auto z-40">
+
+    <div class="flex items-center gap-3 mb-8">
+      <img src="https://i.pravatar.cc/40" class="rounded-full"/>
+      <div>
+        <h2 class="font-semibold">Sarah Kim</h2>
+        <p class="text-sm opacity-80">9th Grade - 9A</p>
+      </div>
+    </div>
+
+    <ul class="space-y-3 text-sm">
+      <li onclick="showToast('Dashboard opened')" class="bg-white/20 p-2 rounded cursor-pointer">Dashboard</li>
+      <li onclick="showToast('Subjects clicked')" class="cursor-pointer">Subjects</li>
+      <li onclick="showToast('Homework clicked')" class="cursor-pointer">Homework</li>
+      <li onclick="showToast('Quizzes clicked')" class="cursor-pointer">Quizzes</li>
+      <li onclick="showToast('Notes clicked')" class="cursor-pointer">Notes</li>
+    </ul>
+
+    <button onclick="showToast('Logged out')" class="mt-10 bg-white dark:bg-gray-700 text-blue-600 dark:text-white w-full py-2 rounded-xl">
+      Log Out
+    </button>
+
+  </div>
+
+  <!-- Main -->
+  <div class="flex-1 p-4 md:p-6">
+
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-6 flex-wrap gap-3">
+
+      <button onclick="toggleSidebar()" class="md:hidden text-2xl">☰</button>
+
+      <h1 class="text-lg md:text-2xl font-bold flex-1">Welcome, Sarah Kim!</h1>
+
+      <div class="flex gap-3 items-center">
+        <button onclick="toggleDark()" class="bg-white dark:bg-gray-700 p-2 rounded-full shadow">🌙</button>
+        <button onclick="showToast('Notifications')" class="bg-white dark:bg-gray-700 p-2 rounded-full shadow">🔔</button>
+        <img src="https://i.pravatar.cc/40" class="rounded-full w-8 md:w-10"/>
+      </div>
+
+    </div>
+
+    <!-- Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+
+      <div onclick="showToast('Rank Details')" class="bg-yellow-400 text-white p-4 rounded-2xl cursor-pointer">
+        <h2 class="text-xl font-bold">4th</h2>
+        <p>Math Quiz Rank</p>
+      </div>
+
+      <div onclick="showToast('Notes Opened')" class="bg-blue-400 text-white p-4 rounded-2xl cursor-pointer">
+        <h2 class="text-xl font-bold">18</h2>
+        <p>Accessed Notes</p>
+      </div>
+
+      <div onclick="showToast('Uploads')" class="bg-pink-400 text-white p-4 rounded-2xl cursor-pointer">
+        <h2 class="text-xl font-bold">3</h2>
+        <p>Uploads</p>
+      </div>
+
+      <div onclick="showToast('Ratings')" class="bg-indigo-400 text-white p-4 rounded-2xl cursor-pointer">
+        <h2 class="text-xl font-bold">3</h2>
+        <p>Rating</p>
+      </div>
+
+    </div>
+
+    <!-- Tabs -->
+    <div class="flex gap-6 mb-6 border-b pb-2 text-gray-500 dark:text-gray-300 overflow-x-auto">
+      <button onclick="switchTab(event,'notes')" class="tab text-blue-500 border-b-2 border-blue-500 pb-1">Notes</button>
+      <button onclick="switchTab(event,'subjects')" class="tab">Subjects</button>
+      <button onclick="switchTab(event,'homework')" class="tab">Homework</button>
+    </div>
+
+    <!-- NOTES -->
+    <div id="notes" class="tabContent">
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- Homework -->
+        <div class="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow">
+
+          <div class="flex justify-between mb-3 flex-col sm:flex-row gap-2">
+            <h2 class="font-semibold">Today's Homework</h2>
+            <input onkeyup="filterHW(this)" placeholder="Search..."
+              class="border p-2 rounded bg-white dark:bg-gray-700 dark:border-gray-600"/>
+          </div>
+
+          <div id="hwList" class="space-y-3 text-sm">
+            <div class="flex justify-between hw">English <span>Due April 25</span></div>
+            <div class="flex justify-between hw">Chemistry <span>2 days</span></div>
+            <div class="flex justify-between hw">Mathematics <span>Difficult</span></div>
+          </div>
+
+        </div>
+
+        <!-- Quiz -->
+        <div class="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow">
+
+          <h2 class="font-semibold mb-3">Start Quiz with AI</h2>
+
+          <input id="quizInput" placeholder="Enter topic..."
+            class="w-full border p-2 rounded mb-3 bg-white dark:bg-gray-700 dark:border-gray-600"/>
+
+          <button onclick="startQuiz()" class="w-full bg-blue-500 text-white py-2 rounded-xl">
+            Start Quiz
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+// Load saved theme
+if(localStorage.getItem("theme") === "dark"){
+  document.documentElement.classList.add("dark");
+}
+
+// Sidebar
+function toggleSidebar(){
+  document.getElementById("sidebar").classList.toggle("-translate-x-full");
+  document.getElementById("sidebarOverlay").classList.toggle("hidden");
+}
+
+// Toast
+function showToast(msg){
+  const t = document.getElementById("toast");
+  t.innerText = msg;
+  t.classList.remove("hidden");
+  setTimeout(()=>t.classList.add("hidden"),2000);
+}
+
+// Tabs
+function switchTab(e,id){
+  document.querySelectorAll(".tab").forEach(t=>{
+    t.classList.remove("text-blue-500","border-b-2");
+  });
+  e.target.classList.add("text-blue-500","border-b-2");
+}
+
+// Quiz
+function startQuiz(){
+  let val = document.getElementById("quizInput").value;
+  if(val) showToast("Starting quiz on: " + val);
+  else showToast("Enter a topic first");
+}
+
+// Filter
+function filterHW(input){
+  let val = input.value.toLowerCase();
+  document.querySelectorAll(".hw").forEach(el=>{
+    el.style.display = el.innerText.toLowerCase().includes(val) ? "flex":"none";
+  });
+}
+
+// Dark Mode
+function toggleDark(){
+  document.documentElement.classList.toggle("dark");
+
+  if(document.documentElement.classList.contains("dark")){
+    localStorage.setItem("theme","dark");
+  } else {
+    localStorage.setItem("theme","light");
+  }
+}
+
+</script>
+
+</body>
+</html>

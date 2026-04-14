@@ -4,7 +4,17 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Enable Dark Mode -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>
+
     <title>Teacher Dashboard</title>
     <style>
         .sidebar-hidden {
@@ -25,31 +35,42 @@
     </style>
 </head>
 
-<body class="bg-gray-100 font-sans">
+<body class="bg-gray-100 dark:bg-gray-900 dark:text-white transition duration-300 font-sans">
 
-    <div class="min-h-screen flex flex-col lg:flex-row">
+<div class="min-h-screen flex flex-col lg:flex-row">
 
-        <!-- Mobile Header -->
-        <header
-            class="lg:hidden bg-gradient-to-r from-blue-500 to-blue-700 text-white px-4 py-3 flex items-center justify-between sticky top-0 z-40 shadow-md">
-            <div class="flex items-center gap-3">
-                <img src="https://i.pravatar.cc/32" class="rounded-full" />
-                <div>
-                    <h1 class="font-semibold text-sm">Erin Carter</h1>
-                    <p class="text-xs opacity-75">Instructor</p>
-                </div>
+    <!-- Mobile Header -->
+    <header class="lg:hidden bg-gradient-to-r from-blue-500 to-blue-700 dark:from-gray-800 dark:to-gray-900 text-white px-4 py-3 flex items-center justify-between sticky top-0 z-40 shadow-md">
+
+        <div class="flex items-center gap-3">
+            <img src="https://i.pravatar.cc/32" class="rounded-full" />
+            <div>
+                <h1 class="font-semibold text-sm">Erin Carter</h1>
+                <p class="text-xs opacity-75">Instructor</p>
             </div>
-            <button id="menuBtn" class="focus:outline-none p-1.5 hover:bg-white/20 rounded-lg transition">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
-                    </path>
-                </svg>
+        </div>
+
+        <div class="flex items-center gap-3">
+
+            <!-- Dark Mode Button -->
+            <button onclick="toggleDark()" class="bg-white dark:bg-gray-700 p-2 rounded-full shadow">
+                🌙
             </button>
-        </header>
+
+            <!-- Bell -->
+            <button class="bg-white dark:bg-gray-700 p-2 rounded-full shadow">
+                🔔
+            </button>
+
+            <!-- Menu -->
+            <button id="menuBtn" class="p-1.5 hover:bg-white/20 rounded-lg">
+                ☰
+            </button>
+        </div>
+    </header>
 
         <!-- Sidebar -->
-        <aside id="sidebar"
-            class="sidebar-hidden lg:sidebar-visible fixed lg:relative w-64 bg-gradient-to-b from-blue-500 to-blue-700 text-white p-5 rounded-r-3xl top-0 left-0 h-screen lg:h-auto z-30 overflow-y-auto">
+        <aside id="sidebar" class="sidebar-hidden lg:sidebar-visible fixed lg:relative w-64 bg-gradient-to-b from-blue-500 to-blue-700 dark:from-gray-800 dark:to-gray-900 text-white p-5 rounded-r-3xl top-0 left-0 h-screen lg:h-auto z-30 overflow-y-auto">
 
             <div class="flex items-center justify-between lg:block mb-8">
                 <div class="flex items-center gap-3">
@@ -79,9 +100,9 @@
                             </svg>
                         </button>
                         <ul id="classesMenu" class="hidden space-y-1 pl-3">
-                            <li class="p-2 rounded-lg hover:bg-white/20 transition cursor-pointer">cse 101</li>
-                            <li class="p-2 rounded-lg hover:bg-white/20 transition cursor-pointer">cse 202</li>
-                            <li class="p-2 rounded-lg hover:bg-white/20 transition cursor-pointer">cse 303</li>
+                            <li class="p-2 rounded-lg hover:bg-white/20 transition cursor-pointer">Math 101</li>
+                            <li class="p-2 rounded-lg hover:bg-white/20 transition cursor-pointer">Science 202</li>
+                            <li class="p-2 rounded-lg hover:bg-white/20 transition cursor-pointer">History 303</li>
                         </ul>
                     </li>
                     <li class="p-3 cursor-pointer hover:bg-white/20 rounded-lg transition">Attendance</li>
@@ -95,7 +116,7 @@
             </nav>
 
             <button
-                class="mt-10 bg-white text-blue-600 w-full py-3 rounded-xl font-semibold hover:bg-gray-100 transition text-sm sm:text-base">
+                class="mt-10 bg-white dark:bg-gray-700 text-blue-600 dark:text-white w-full py-3 rounded-xl font-semibold hover:bg-gray-100 dark:hover:bg-gray-600 transition text-sm sm:text-base">
                 Log Out
             </button>
 
@@ -108,22 +129,34 @@
         <main class="flex-1 w-full overflow-y-auto pb-8">
 
             <!-- Welcome Section -->
-            <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 sm:p-6 md:p-8">
-                <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800">Welcome back, Erin!</h1>
-                <p class="text-gray-600 text-sm mt-1 hidden sm:block">Manage your classroom and track student progress
-                </p>
+            <div class="relative">
+                <div class="hidden lg:flex justify-end items-center gap-4 absolute right-4 top-4 z-10">
+                    <button onclick="toggleDark()" class="bg-white/90 dark:bg-gray-700 p-3 rounded-full shadow text-gray-800 dark:text-white transition">
+                        🌙
+                    </button>
+                    <button class="bg-white/90 dark:bg-gray-700 p-3 rounded-full shadow text-gray-800 dark:text-white transition">
+                        🔔
+                    </button>
+                    <img src="https://i.pravatar.cc/40" class="rounded-full w-10 h-10 border border-white/80 dark:border-gray-600" />
+                </div>
+
+                <div class="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-700 p-4 sm:p-6 md:p-8 rounded-b-3xl overflow-hidden">
+                    <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 dark:text-white">Welcome back, Erin!</h1>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm mt-1 hidden sm:block">Manage your classroom and track student progress
+                    </p>
+                </div>
             </div>
 
             <!-- Action Buttons -->
             <div class="px-4 sm:px-6 md:px-8 py-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <button
-                    class="bg-white px-4 py-3 rounded-xl shadow hover:shadow-md transition font-medium text-sm sm:text-base">+
+                    class="bg-white dark:bg-gray-700 dark:text-white px-4 py-3 rounded-xl shadow hover:shadow-md transition font-medium text-sm sm:text-base">+
                     Add Assignment</button>
                 <button
-                    class="bg-white px-4 py-3 rounded-xl shadow hover:shadow-md transition font-medium text-sm sm:text-base">Mark
+                    class="bg-white dark:bg-gray-700 dark:text-white px-4 py-3 rounded-xl shadow hover:shadow-md transition font-medium text-sm sm:text-base">Mark
                     Attendance</button>
                 <button
-                    class="bg-white px-4 py-3 rounded-xl shadow hover:shadow-md transition font-medium text-sm sm:text-base">View
+                    class="bg-white dark:bg-gray-700 dark:text-white px-4 py-3 rounded-xl shadow hover:shadow-md transition font-medium text-sm sm:text-base">View
                     Reports</button>
             </div>
 
@@ -163,28 +196,28 @@
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
 
                     <!-- Student Table Section -->
-                    <section class="lg:col-span-2 bg-white rounded-2xl shadow-md overflow-hidden">
+                    <section class="lg:col-span-2 bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden">
 
-                        <div class="border-b border-gray-200 p-4 sm:p-5 md:p-6">
+                        <div class="border-b border-gray-200 dark:border-gray-700 p-4 sm:p-5 md:p-6">
                             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
-                                <h2 class="text-lg sm:text-xl font-semibold text-gray-800">Student Management</h2>
+                                <h2 class="text-lg sm:text-xl font-semibold text-gray-800 dark:text-white">Student Management</h2>
                                 <div class="flex flex-wrap gap-2">
                                     <span
-                                        class="px-3 py-1.5 rounded-full bg-gray-100 text-gray-700 text-xs cursor-pointer hover:bg-gray-200 transition">All</span>
+                                        class="px-3 py-1.5 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-xs cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition">All</span>
                                     <span
-                                        class="px-3 py-1.5 rounded-full bg-red-100 text-red-600 text-xs cursor-pointer hover:bg-red-200 transition">Low</span>
+                                        class="px-3 py-1.5 rounded-full bg-red-100 dark:bg-red-900 text-red-600 dark:text-red-300 text-xs cursor-pointer hover:bg-red-200 dark:hover:bg-red-800 transition">Low</span>
                                     <span
-                                        class="px-3 py-1.5 rounded-full bg-yellow-100 text-yellow-600 text-xs cursor-pointer hover:bg-yellow-200 transition">Avg</span>
+                                        class="px-3 py-1.5 rounded-full bg-yellow-100 dark:bg-yellow-900 text-yellow-600 dark:text-yellow-300 text-xs cursor-pointer hover:bg-yellow-200 dark:hover:bg-yellow-800 transition">Avg</span>
                                     <span
-                                        class="px-3 py-1.5 rounded-full bg-green-100 text-green-600 text-xs cursor-pointer hover:bg-green-200 transition">Good</span>
+                                        class="px-3 py-1.5 rounded-full bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-300 text-xs cursor-pointer hover:bg-green-200 dark:hover:bg-green-800 transition">Good</span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="overflow-x-auto">
                             <table class="w-full text-sm">
-                                <thead class="bg-gray-50 border-b border-gray-200">
-                                    <tr class="text-gray-600 text-xs sm:text-sm font-semibold">
+                                <thead class="bg-gray-50 dark:bg-gray-700 border-b border-gray-200 dark:border-gray-600">
+                                    <tr class="text-gray-600 dark:text-gray-300 text-xs sm:text-sm font-semibold">
                                         <th class="text-left p-3 sm:p-4">Name</th>
                                         <th class="text-left p-3 sm:p-4">Attendance</th>
 
@@ -192,15 +225,15 @@
                                     </tr>
                                 </thead>
 
-                                <tbody class="divide-y divide-gray-100">
-                                    <tr class="hover:bg-gray-50 transition">
+                                <tbody class="divide-y divide-gray-100 dark:divide-gray-700">
+                                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 transition">
                                         <td class="p-3 sm:p-4 flex items-center gap-2">
                                             <img src="https://i.pravatar.cc/30" class="rounded-full w-8 h-8" />
-                                            <span class="text-gray-700 text-sm font-medium">Jacob Lee</span>
+                                            <span class="text-gray-700 dark:text-gray-200 text-sm font-medium">Jacob Lee</span>
                                         </td>
-                                        <td class="p-3 sm:p-4 text-green-600 font-semibold text-sm">86%</td>
+                                        <td class="p-3 sm:p-4 text-green-600 dark:text-green-400 font-semibold text-sm">86%</td>
                                         <td
-                                            class="p-3 sm:p-4 hidden md:table-cell text-green-600 font-semibold text-sm">
+                                            class="p-3 sm:p-4 hidden md:table-cell text-green-600 dark:text-green-400 font-semibold text-sm">
                                             Good</td>
                                     </tr>
 
@@ -214,22 +247,22 @@
                                             Avg</td>
                                     </tr>
 
-                                    <tr class="hover:bg-gray-50 transition">
+                                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 transition">
                                         <td class="p-3 sm:p-4 flex items-center gap-2">
                                             <img src="https://i.pravatar.cc/32" class="rounded-full w-8 h-8" />
-                                            <span class="text-gray-700 text-sm font-medium">David Brown</span>
+                                            <span class="text-gray-700 dark:text-gray-200 text-sm font-medium">David Brown</span>
                                         </td>
-                                        <td class="p-3 sm:p-4 text-orange-600 font-semibold text-sm">65%</td>
+                                        <td class="p-3 sm:p-4 text-orange-600 dark:text-orange-400 font-semibold text-sm">65%</td>
 
-                                        <td class="p-3 sm:p-4 hidden md:table-cell text-red-600 font-semibold text-sm">
+                                        <td class="p-3 sm:p-4 hidden md:table-cell text-red-600 dark:text-red-400 font-semibold text-sm">
                                             low</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
 
-                        <div class="p-3 sm:p-4 border-t border-gray-200 text-center">
-                            <button class="text-blue-600 hover:text-blue-800 text-sm font-medium">View All Students
+                        <div class="p-3 sm:p-4 border-t border-gray-200 dark:border-gray-700 text-center">
+                            <button class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 text-sm font-medium">View All Students
                                 →</button>
                         </div>
 
@@ -239,62 +272,62 @@
                     <aside class="space-y-4 sm:space-y-6">
 
                         <!-- Pending Assignments Card -->
-                        <div class="bg-white rounded-2xl shadow-md overflow-hidden">
-                            <div class="border-b border-gray-200 p-4 sm:p-5">
+                        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden">
+                            <div class="border-b border-gray-200 dark:border-gray-700 p-4 sm:p-5">
                                 <div class="flex items-center justify-between">
-                                    <h2 class="font-semibold text-gray-800 text-sm sm:text-base">Pending Assignments
+                                    <h2 class="font-semibold text-gray-800 dark:text-white text-sm sm:text-base">Pending Assignments
                                     </h2>
-                                    <span class="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded-full">4</span>
+                                    <span class="text-xs bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 px-2 py-1 rounded-full">4</span>
                                 </div>
                             </div>
 
-                            <ul class="divide-y divide-gray-100 p-4 sm:p-5 space-y-3 max-h-80 overflow-y-auto">
+                            <ul class="divide-y divide-gray-100 dark:divide-gray-700 p-4 sm:p-5 space-y-3 max-h-80 overflow-y-auto">
                                 <li class="flex justify-between items-center pb-3 text-sm">
-                                    <span class="text-gray-700 font-medium">jacob</span>
-                                    <span class="text-gray-500 text-xs">Apr 23</span>
+                                    <span class="text-gray-700 dark:text-gray-200 font-medium">jacob</span>
+                                    <span class="text-gray-500 dark:text-gray-400 text-xs">Apr 23</span>
                                 </li>
                                 <li class="flex justify-between items-center pb-3 text-sm">
-                                    <span class="text-gray-700 font-medium">jerry</span>
-                                    <span class="text-gray-500 text-xs">Apr 25</span>
+                                    <span class="text-gray-700 dark:text-gray-200 font-medium">jerry</span>
+                                    <span class="text-gray-500 dark:text-gray-400 text-xs">Apr 25</span>
                                 </li>
                                 <li class="flex justify-between items-center pb-3 text-sm">
-                                    <span class="text-gray-700 font-medium">adam</span>
-                                    <span class="text-gray-500 text-xs">Apr 27</span>
+                                    <span class="text-gray-700 dark:text-gray-200 font-medium">adam</span>
+                                    <span class="text-gray-500 dark:text-gray-400 text-xs">Apr 27</span>
                                 </li>
                                 <li class="flex justify-between items-center text-sm">
-                                    <span class="text-gray-700 font-medium">eve</span>
-                                    <span class="text-gray-500 text-xs">Apr 29</span>
+                                    <span class="text-gray-700 dark:text-gray-200 font-medium">eve</span>
+                                    <span class="text-gray-500 dark:text-gray-400 text-xs">Apr 29</span>
                                 </li>
                             </ul>
                         </div>
 
                         <!-- Schedule Card -->
-                        <div class="bg-white rounded-2xl shadow-md overflow-hidden">
-                            <div class="border-b border-gray-200 p-4 sm:p-5">
-                                <h2 class="font-semibold text-gray-800 text-sm sm:text-base">Today's Schedule</h2>
+                        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden">
+                            <div class="border-b border-gray-200 dark:border-gray-700 p-4 sm:p-5">
+                                <h2 class="font-semibold text-gray-800 dark:text-white text-sm sm:text-base">Today's Schedule</h2>
                             </div>
 
-                            <ul class="divide-y divide-gray-100 p-4 sm:p-5 space-y-3">
+                            <ul class="divide-y divide-gray-100 dark:divide-gray-700 p-4 sm:p-5 space-y-3">
                                 <li class="flex justify-between items-center pb-3 text-sm">
                                     <div>
-                                        <p class="text-gray-700 font-medium">Math</p>
-                                        <p class="text-gray-500 text-xs">Room 101</p>
+                                        <p class="text-gray-700 dark:text-gray-200 font-medium">Math</p>
+                                        <p class="text-gray-500 dark:text-gray-400 text-xs">Room 101</p>
                                     </div>
-                                    <span class="text-gray-600 font-semibold text-sm">9:00 AM</span>
+                                    <span class="text-gray-600 dark:text-gray-300 font-semibold text-sm">9:00 AM</span>
                                 </li>
                                 <li class="flex justify-between items-center pb-3 text-sm">
                                     <div>
-                                        <p class="text-gray-700 font-medium">Science</p>
-                                        <p class="text-gray-500 text-xs">Lab</p>
+                                        <p class="text-gray-700 dark:text-gray-200 font-medium">Science</p>
+                                        <p class="text-gray-500 dark:text-gray-400 text-xs">Lab</p>
                                     </div>
-                                    <span class="text-gray-600 font-semibold text-sm">4:00 PM</span>
+                                    <span class="text-gray-600 dark:text-gray-300 font-semibold text-sm">4:00 PM</span>
                                 </li>
                                 <li class="flex justify-between items-center text-sm">
                                     <div>
-                                        <p class="text-gray-700 font-medium">History</p>
-                                        <p class="text-gray-500 text-xs">Room 205</p>
+                                        <p class="text-gray-700 dark:text-gray-200 font-medium">History</p>
+                                        <p class="text-gray-500 dark:text-gray-400 text-xs">Room 205</p>
                                     </div>
-                                    <span class="text-gray-600 font-semibold text-sm">5:00 PM</span>
+                                    <span class="text-gray-600 dark:text-gray-300 font-semibold text-sm">5:00 PM</span>
                                 </li>
                             </ul>
                         </div>
@@ -354,6 +387,21 @@
             classesMenu.classList.toggle('hidden');
             classesIcon.classList.toggle('rotate-180');
         });
+
+        // Dark Mode
+        if(localStorage.getItem("theme")==="dark"){
+            document.documentElement.classList.add("dark");
+        }
+
+        function toggleDark(){
+            document.documentElement.classList.toggle("dark");
+
+            if(document.documentElement.classList.contains("dark")){
+                localStorage.setItem("theme","dark");
+            } else {
+                localStorage.setItem("theme","light");
+            }
+        }
     </script>
 
 </body>
