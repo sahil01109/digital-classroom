@@ -32,7 +32,7 @@ tailwind.config = {
       <img src="https://i.pravatar.cc/40" class="rounded-full"/>
       <div>
         <h2 class="font-semibold">Sarah Kim</h2>
-        <p class="text-sm opacity-80">cse 3</p>
+        <p class="text-sm opacity-80">9th Grade - 9A</p>
       </div>
     </div>
 
@@ -122,19 +122,7 @@ tailwind.config = {
 
         </div>
 
-        <!-- Quiz -->
-        <div class="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow">
-
-          <h2 class="font-semibold mb-3">Start Quiz with AI</h2>
-
-          <input id="quizInput" placeholder="Enter topic..."
-            class="w-full border p-2 rounded mb-3 bg-white dark:bg-gray-700 dark:border-gray-600"/>
-
-          <button onclick="startQuiz()" class="w-full bg-blue-500 text-white py-2 rounded-xl">
-            Start Quiz
-          </button>
-
-        </div>
+      
 
       </div>
 
@@ -173,12 +161,7 @@ function switchTab(e,id){
   e.target.classList.add("text-blue-500","border-b-2");
 }
 
-// Quiz
-function startQuiz(){
-  let val = document.getElementById("quizInput").value;
-  if(val) showToast("Starting quiz on: " + val);
-  else showToast("Enter a topic first");
-}
+
 
 // Filter
 function filterHW(input){
