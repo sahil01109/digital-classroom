@@ -35,7 +35,7 @@
     </style>
 </head>
 
-<body class="bg-gray-100 dark:bg-gray-900 dark:text-white transition duration-300 font-sans">
+<body class="bg-gray-100 dark:bg-gray-800 dark:text-white transition duration-300 font-sans">
 
     <div class="min-h-screen flex flex-col lg:flex-row">
 
@@ -52,14 +52,12 @@
             </div>
 
             <div class="flex items-center gap-3">
-
-                <!-- Dark Mode Button -->
-                <button onclick="toggleDark()" class="bg-white dark:bg-gray-700 p-2 rounded-full shadow">
+                <button onclick="toggleDark()" class="themeBtn"
+                    class="bg-white  rounded-full shadow text-lg">
                     🌙
                 </button>
-
                 <!-- Bell -->
-                <button class="bg-white dark:bg-gray-700 p-2 rounded-full shadow">
+                <button class="  rounded-full shadow">
                     🔔
                 </button>
 
@@ -105,9 +103,9 @@
                             </svg>
                         </button>
                         <ul id="classesMenu" class="hidden space-y-1 pl-3">
-                            <li class="p-2 rounded-lg hover:bg-white/20 transition cursor-pointer">Math 101</li>
-                            <li class="p-2 rounded-lg hover:bg-white/20 transition cursor-pointer">Science 202</li>
-                            <li class="p-2 rounded-lg hover:bg-white/20 transition cursor-pointer">History 303</li>
+                            <li class="p-2 rounded-lg hover:bg-white/20 transition cursor-pointer">cse1</li>
+                            <li class="p-2 rounded-lg hover:bg-white/20 transition cursor-pointer">cse3</li>
+                            <li class="p-2 rounded-lg hover:bg-white/20 transition cursor-pointer">cse5</li>
                         </ul>
                     </li>
                     <li class="p-3 cursor-pointer hover:bg-white/20 rounded-lg transition">Attendance</li>
@@ -136,12 +134,12 @@
             <!-- Welcome Section -->
             <div class="relative">
                 <div class="hidden lg:flex justify-end items-center gap-4 absolute right-4 top-4 z-10">
-                    <button onclick="toggleDark()"
-                        class="bg-white/90 dark:bg-gray-700 p-3 rounded-full shadow text-gray-800 dark:text-white transition">
+                    <button onclick="toggleDark()" class="themeBtn"
+                        class=" rounded-full shadow text-lg">
                         🌙
                     </button>
                     <button
-                        class="bg-white/90 dark:bg-gray-700 p-3 rounded-full shadow text-gray-800 dark:text-white transition">
+                        class=" rounded-full shadow ">
                         🔔
                     </button>
                     <img src="https://i.pravatar.cc/40"
@@ -326,37 +324,7 @@
                             </ul>
                         </div>
 
-                        <!-- Schedule Card -->
-                        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden">
-                            <div class="border-b border-gray-200 dark:border-gray-700 p-4 sm:p-5">
-                                <h2 class="font-semibold text-gray-800 dark:text-white text-sm sm:text-base">Today's
-                                    Schedule</h2>
-                            </div>
-
-                            <ul class="divide-y divide-gray-100 dark:divide-gray-700 p-4 sm:p-5 space-y-3">
-                                <li class="flex justify-between items-center pb-3 text-sm">
-                                    <div>
-                                        <p class="text-gray-700 dark:text-gray-200 font-medium">Math</p>
-                                        <p class="text-gray-500 dark:text-gray-400 text-xs">Room 101</p>
-                                    </div>
-                                    <span class="text-gray-600 dark:text-gray-300 font-semibold text-sm">9:00 AM</span>
-                                </li>
-                                <li class="flex justify-between items-center pb-3 text-sm">
-                                    <div>
-                                        <p class="text-gray-700 dark:text-gray-200 font-medium">Science</p>
-                                        <p class="text-gray-500 dark:text-gray-400 text-xs">Lab</p>
-                                    </div>
-                                    <span class="text-gray-600 dark:text-gray-300 font-semibold text-sm">4:00 PM</span>
-                                </li>
-                                <li class="flex justify-between items-center text-sm">
-                                    <div>
-                                        <p class="text-gray-700 dark:text-gray-200 font-medium">History</p>
-                                        <p class="text-gray-500 dark:text-gray-400 text-xs">Room 205</p>
-                                    </div>
-                                    <span class="text-gray-600 dark:text-gray-300 font-semibold text-sm">5:00 PM</span>
-                                </li>
-                            </ul>
-                        </div>
+                     
 
                     </aside>
                     <!-- Quiz -->
@@ -431,9 +399,18 @@
             if (val) showToast("Starting quiz on: " + val);
             else showToast("Enter a topic first");
         }
-        // Dark Mode
+        const themeBtn = document.getElementsByClassName("themeBtn");
+
+        // Load saved theme
         if (localStorage.getItem("theme") === "dark") {
             document.documentElement.classList.add("dark");
+            for (let btn of themeBtn) {
+                btn.textContent = "☀️";
+            }
+        } else {
+            for (let btn of themeBtn) {
+                btn.textContent = "🌙";
+            }
         }
 
         function toggleDark() {
@@ -441,8 +418,14 @@
 
             if (document.documentElement.classList.contains("dark")) {
                 localStorage.setItem("theme", "dark");
+                for (let btn of themeBtn) {
+                    btn.textContent = "☀️"; // show sun
+                }
             } else {
                 localStorage.setItem("theme", "light");
+                for (let btn of themeBtn) {
+                    btn.textContent = "🌙"; // show moon
+                }
             }
         }
     </script>
