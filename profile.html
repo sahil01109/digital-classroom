@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = { darkMode: 'class' }
+</script>
+
+<title>Student Profile</title>
+
+<style>
+.glass {
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(12px);
+}
+.dark .glass {
+  background: rgba(30,30,30,0.6);
+}
+</style>
+
+</head>
+
+<body class="bg-gray-100 dark:bg-gray-900 dark:text-white">
+
+<!-- TOP BAR -->
+<div class="flex justify-between items-center p-4">
+<h1 class="text-xl font-bold">Profile</h1>
+
+<button onclick="toggleDark()" id="themeBtn"
+class="bg-white dark:bg-gray-700 px-3 py-1 rounded">
+🌙
+</button>
+</div>
+
+<!-- HEADER -->
+<div class="relative h-52 bg-gradient-to-r from-blue-500 to-indigo-600 flex items-end px-6 pb-6">
+
+<!-- SETTINGS ICON -->
+<button onclick="openSettings()"
+class="absolute top-4 right-4 bg-white/20 hover:bg-white/30 
+backdrop-blur p-2 rounded-full text-white transition">
+⚙️
+</button>
+
+<div class="flex items-center gap-4">
+
+<img src="https://i.pravatar.cc/120"
+class="w-24 h-24 rounded-full border-4 border-white shadow-lg">
+
+<div class="text-white">
+<h2 class="text-2xl font-bold">Sarah Kim</h2>
+<p class="text-sm opacity-80">Student • Class CSE 6th</p>
+<p class="text-xs">🟢 Online</p>
+</div>
+
+</div>
+
+</div>
+
+<!-- MAIN -->
+<div class="max-w-6xl mx-auto p-6 space-y-6">
+
+<!-- STATS -->
+<div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+
+<div class="glass p-4 rounded-xl text-center">
+<h3 class="text-xl font-bold">6</h3>
+<p class="text-xs">Subjects</p>
+</div>
+
+<div class="glass p-4 rounded-xl text-center">
+<h3 class="text-xl font-bold">24</h3>
+<p class="text-xs">Assignments</p>
+</div>
+
+<div class="glass p-4 rounded-xl text-center">
+<h3 class="text-xl font-bold">88%</h3>
+<p class="text-xs">Quiz Score</p>
+</div>
+
+<div class="glass p-4 rounded-xl text-center">
+<h3 class="text-xl font-bold">120</h3>
+<p class="text-xs">Notes</p>
+</div>
+
+<div class="glass p-4 rounded-xl text-center">
+<h3 class="text-xl font-bold">⭐ 4.5</h3>
+<p class="text-xs">Rating</p>
+</div>
+
+</div>
+
+<!-- TABS -->
+<div class="flex gap-6 border-b pb-2 text-sm overflow-x-auto">
+<button onclick="switchTab('overview')" class="tabBtn border-b-2 border-blue-500">Overview</button>
+<button onclick="switchTab('notes')" class="tabBtn">Notes</button>
+<button onclick="switchTab('assignments')" class="tabBtn">Assignments</button>
+<button onclick="switchTab('quiz')" class="tabBtn">Quiz</button>
+<button onclick="switchTab('activity')" class="tabBtn">Activity</button>
+<button onclick="switchTab('settings')" class="tabBtn">Settings</button>
+</div>
+
+<!-- CONTENT -->
+
+<div id="overview" class="tabContent space-y-4">
+<div class="glass p-4 rounded-xl">
+<h3 class="font-semibold">Recent Activity</h3>
+<p class="text-sm">Viewed notes, submitted homework, attempted quiz</p>
+</div>
+</div>
+
+<div id="notes" class="tabContent hidden">
+<div class="glass p-4 rounded-xl">
+<p>📄 Algebra Notes (120 views)</p>
+<button class="mt-2 bg-blue-500 text-white px-4 py-2 rounded-xl">Upload</button>
+</div>
+</div>
+
+<div id="assignments" class="tabContent hidden">
+<div class="glass p-4 rounded-xl space-y-2">
+<p>Math Homework <span class="text-green-500">✅</span></p>
+<p>Science Project <span class="text-yellow-500">⏳</span></p>
+<p>Essay <span class="text-red-500">❌</span></p>
+</div>
+</div>
+
+<div id="quiz" class="tabContent hidden">
+<div class="glass p-4 rounded-xl">
+<p>Quiz Score: 88%</p>
+<button class="mt-2 bg-indigo-500 text-white px-4 py-2 rounded-xl">Start Quiz</button>
+</div>
+</div>
+
+<div id="activity" class="tabContent hidden">
+<div class="glass p-4 rounded-xl">
+<p>🕒 Logged in</p>
+<p>📚 Viewed notes</p>
+<p>📝 Submitted homework</p>
+</div>
+</div>
+
+<div id="settings" class="tabContent hidden">
+<div class="glass p-4 rounded-xl space-y-2">
+<button onclick="openSettings()" class="w-full p-2 border rounded">Edit Profile</button>
+<button onclick="toggleDark()" class="w-full p-2 border rounded">Toggle Dark Mode</button>
+</div>
+</div>
+
+</div>
+
+<!-- SETTINGS PANEL -->
+<div id="settingsPanel"
+class="fixed inset-0 bg-black/50 hidden flex items-center justify-center z-50">
+
+<div class="bg-white dark:bg-gray-900 p-6 rounded-2xl w-96 space-y-4">
+
+<h2 class="text-lg font-bold">Edit Profile</h2>
+
+<button onclick="editField('name')" class="w-full p-3 border rounded-xl text-left">Change Name</button>
+<button onclick="editField('class')" class="w-full p-3 border rounded-xl text-left">Change Class</button>
+<button onclick="editField('photo')" class="w-full p-3 border rounded-xl text-left">Change Profile Photo</button>
+
+<button onclick="closeSettings()" class="w-full bg-red-500 text-white p-2 rounded-xl">Close</button>
+
+</div>
+</div>
+
+<!-- EDIT BOX -->
+<div id="editBox"
+class="fixed inset-0 bg-black/50 hidden flex items-center justify-center z-50">
+
+<div class="bg-white dark:bg-gray-900 p-6 rounded-2xl w-80 space-y-4">
+
+<h3 id="editTitle" class="font-bold"></h3>
+
+<input id="editInput" class="w-full p-3 border rounded-xl dark:bg-gray-800">
+
+<input id="fileInput" type="file" class="hidden">
+
+<button onclick="saveEdit()" class="bg-blue-500 text-white w-full p-2 rounded-xl">Save</button>
+
+</div>
+</div>
+
+<script>
+
+// DARK MODE
+const btn = document.getElementById("themeBtn");
+
+function toggleDark(){
+document.documentElement.classList.toggle("dark");
+
+if(document.documentElement.classList.contains("dark")){
+btn.innerText="☀️";
+}else{
+btn.innerText="🌙";
+}
+}
+
+// TABS
+function switchTab(tab){
+document.querySelectorAll(".tabContent").forEach(t=>t.classList.add("hidden"));
+document.getElementById(tab).classList.remove("hidden");
+
+document.querySelectorAll(".tabBtn").forEach(b=>b.classList.remove("border-blue-500"));
+event.target.classList.add("border-blue-500");
+}
+
+// SETTINGS
+function openSettings(){
+document.getElementById("settingsPanel").classList.remove("hidden");
+}
+
+function closeSettings(){
+document.getElementById("settingsPanel").classList.add("hidden");
+}
+
+let currentField="";
+
+function editField(field){
+currentField=field;
+document.getElementById("editBox").classList.remove("hidden");
+document.getElementById("editTitle").innerText="Edit "+field;
+
+if(field==="photo"){
+document.getElementById("fileInput").click();
+}
+}
+
+// SAVE
+function saveEdit(){
+
+if(currentField==="name"){
+document.getElementById("profileName").innerText=document.getElementById("editInput").value;
+}
+
+if(currentField==="class"){
+document.getElementById("profileClass").innerText="Student • "+document.getElementById("editInput").value;
+}
+
+document.getElementById("editBox").classList.add("hidden");
+}
+
+// IMAGE PREVIEW
+document.getElementById("fileInput").addEventListener("change", function(e){
+const file=e.target.files[0];
+if(file){
+document.getElementById("profileImg").src=URL.createObjectURL(file);
+}
+});
+
+</script>
+
+</body>
+</html>
