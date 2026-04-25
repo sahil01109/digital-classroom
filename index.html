@@ -1,268 +1,438 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Smart Classroom</title>
-<script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Classroom</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<style>
-body { font-family: 'Poppins', sans-serif; }
-</style>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+  </style>
 </head>
 
 <body class="bg-[#f3f6fb]">
 
-<!-- ================= NAVBAR ================= -->
-<header class="bg-white shadow-sm sticky top-0 z-50">
-  <input id="mobile-menu" type="checkbox" class="peer hidden">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
+  <!-- ================= NAVBAR ================= -->
+  <header class="bg-white shadow-sm sticky top-0 z-50">
+    <input id="mobile-menu" type="checkbox" class="peer hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
 
-    <div class="flex items-center gap-2">
-      <div class="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center text-white font-bold">S</div>
-      <span class="text-[#2b4c7e] font-semibold">Smart</span>
-    </div>
+      <div class="flex items-center gap-2">
+        <div class="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center text-white font-bold">S</div>
+        <span class="text-[#2b4c7e] font-semibold">Smart</span>
+      </div>
 
-    <label for="mobile-menu" class="md:hidden text-gray-700 p-2 rounded-lg hover:bg-gray-100 transition cursor-pointer" aria-label="Open menu">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-      </svg>
-    </label>
+      <label for="mobile-menu"
+        class="md:hidden text-gray-700 p-2 rounded-lg hover:bg-gray-100 transition cursor-pointer"
+        aria-label="Open menu">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </label>
 
-    <nav class="hidden md:flex items-center gap-6 text-sm text-gray-600">
-      <a class="text-blue-600 border-b-2 border-blue-600 pb-1">Home</a>
+      <nav class="hidden md:flex items-center gap-6 text-sm text-gray-600">
+        <a class="text-blue-600 border-b-2 border-blue-600 pb-1">Home</a>
 
-      <div class="relative group">
-        <button class="hover:text-blue-600">Features ▾</button>
-        <div class="absolute hidden group-hover:block bg-white shadow-lg rounded-lg mt-2 w-44 p-2">
-          <a class="block px-3 py-2 hover:bg-gray-100 rounded">Timetable</a>
-          <a class="block px-3 py-2 hover:bg-gray-100 rounded">GPA</a>
-          <a class="block px-3 py-2 hover:bg-gray-100 rounded">Quiz</a>
+        <div class="relative group">
+          <button class="hover:text-blue-600">Features ▾</button>
+          <div class="absolute hidden group-hover:block bg-white shadow-lg rounded-lg mt-2 w-44 p-2">
+            <a class="block px-3 py-2 hover:bg-gray-100 rounded">Timetable</a>
+            <a class="block px-3 py-2 hover:bg-gray-100 rounded">GPA</a>
+            <a class="block px-3 py-2 hover:bg-gray-100 rounded">Quiz</a>
+          </div>
         </div>
-      </div>
 
-      <a class="hover:text-blue-600">Resources</a>
-      <a class="hover:text-blue-600">Why Us</a>
-    </nav>
+        <a class="hover:text-blue-600">Resources</a>
+        <a class="hover:text-blue-600">Why Us</a>
+      </nav>
 
-    <button class="hidden md:inline-flex bg-blue-500 text-white px-4 py-1.5 rounded-full text-sm shadow hover:scale-105 transition">
-      Sign In
-    </button>
-
-  </div>
-
-  <div class="hidden peer-checked:block md:hidden bg-white border-t border-gray-200 px-4 py-4">
-    <div class="space-y-3 text-sm text-gray-700">
-      <a class="block py-2 rounded-lg hover:bg-gray-100">Home</a>
-      <a class="block py-2 rounded-lg hover:bg-gray-100">Features</a>
-      <a class="block py-2 rounded-lg hover:bg-gray-100">Resources</a>
-      <a class="block py-2 rounded-lg hover:bg-gray-100">Why Us</a>
-      <button class="w-full bg-blue-500 text-white px-4 py-2 rounded-full shadow hover:scale-105 transition">Sign In</button>
-    </div>
-  </div>
-</header>
-
-<!-- ================= HERO ================= -->
-<section class="relative text-[#2b4c7e] bg-no-repeat bg-bottom bg-cover min-h-[70vh] sm:min-h-[75vh]"
-style="background-image: url('img/hero.png');">
-
-<div class="absolute inset-0 bg-gradient-to-b "></div>
-
-<div class="relative z-10 flex flex-col items-center justify-center text-center px-4 sm:px-6 pt-20 pb-28 sm:pb-40">
-
-<h1 class="text-2xl sm:text-4xl md:text-5xl font-bold mb-5 leading-tight">
-Smart Digital Classroom <br class="hidden sm:block">For Modern Learning
-</h1>
-
-<p class="text-gray-700 max-w-xl mb-6">
-Manage timetable, calculate GPA, and boost learning with quizzes — all in one platform.
-</p>
-
-<div class="flex gap-3 flex-col sm:flex-row">
-<button class="bg-[#e74c3c] px-6 py-2.5 rounded-lg text-white shadow hover:scale-105 transition">
-Get Started
-</button>
-<a href="login.html" class="bg-[#2d6cdf] px-6 py-2.5 rounded-lg text-white shadow hover:scale-105 transition">
-Login
-</a>
-</div>
-
-</div>
-
-<div class="absolute bottom-0 w-full h-16 bg-[#f3f6fb] rounded-t-[30px]"></div>
-</section>
-
-
-<!-- ================= FEATURES (IMPROVED) ================= -->
-<section class="max-w-7xl mx-auto px-4 py-16 text-center">
-<h2 class="text-3xl sm:text-4xl font-bold text-[#2b4c7e] mb-10">Powerful Features</h2>
-
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-
-<div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
-<div class="text-4xl mb-3">📅</div>
-<h3 class="font-semibold mb-2">Smart Scheduling</h3>
-<p class="text-sm text-gray-600">Auto generate and manage timetables efficiently</p>
-</div>
-
-<div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
-<div class="text-4xl mb-3">📊</div>
-<h3 class="font-semibold mb-2">Performance Tracking</h3>
-<p class="text-sm text-gray-600">Calculate GPA and monitor progress</p>
-</div>
-
-<div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
-<div class="text-4xl mb-3">🧠</div>
-<h3 class="font-semibold mb-2">Interactive Learning</h3>
-<p class="text-sm text-gray-600">Daily quizzes to boost knowledge</p>
-</div>
-
-</div>
-</section>
-<section class="max-w-7xl mx-auto px-4 py-20">
-
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-
-    <!-- LEFT IMAGE -->
-    <div class="relative">
-      <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94" 
-           class="rounded-2xl shadow-lg w-full h-72 sm:h-[350px] object-cover">
-
-      <!-- small overlay card -->
-      <div class="absolute bottom-4 left-4 bg-white p-4 rounded-xl shadow-md">
-        <h4 class="text-sm font-semibold text-blue-600">10K+ Students</h4>
-        <p class="text-xs text-gray-500">Trust our platform</p>
-      </div>
-    </div>
-
-    <!-- RIGHT CONTENT -->
-    <div>
-
-      <h2 class="text-3xl font-bold text-[#2b4c7e] mb-5">
-        About Smart Classroom
-      </h2>
-
-      <p class="text-gray-600 mb-4 leading-relaxed">
-        Smart Classroom is a modern digital learning platform designed to simplify student life. 
-        From managing timetables to tracking academic performance, we bring everything into one place.
-      </p>
-
-      <p class="text-gray-600 mb-6 leading-relaxed">
-        Our goal is to provide students with smart tools that improve productivity, save time, 
-        and enhance learning experiences in a simple and effective way.
-      </p>
-
-      <!-- Points -->
-      <div class="space-y-3 text-sm text-gray-700">
-        <p>✔ Easy to use interface</p>
-        <p>✔ All-in-one academic tools</p>
-        <p>✔ Designed for students & teachers</p>
-        <p>✔ Modern and responsive design</p>
-      </div>
-
-      <!-- Button -->
-      <button class="mt-6 bg-blue-500 text-white px-6 py-2 rounded-lg shadow hover:scale-105 transition">
-        Learn More
+      <button
+        class="hidden md:inline-flex bg-blue-500 text-white px-4 py-1.5 rounded-full text-sm shadow hover:scale-105 transition">
+        Sign In
       </button>
 
     </div>
 
-  </div>
-
-</section>
-<!-- ================= WHY US ================= -->
-<section class="bg-white py-20">
-<div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-
-<div>
-<h2 class="text-3xl font-bold text-[#2b4c7e] mb-6">Why Choose Smart Classroom?</h2>
-
-<ul class="space-y-4 text-gray-600">
-<li>✔ Easy to use interface</li>
-<li>✔ All tools in one platform</li>
-<li>✔ Saves time & improves productivity</li>
-<li>✔ Designed for modern students</li>
-</ul>
-</div>
-
-<div class="bg-blue-100 p-10 rounded-2xl text-center">
-<h3 class="text-xl font-semibold mb-2">Better Learning Experience</h3>
-<p class="text-sm text-gray-600">Everything you need to succeed in one place</p>
-</div>
-
-</div>
-</section>
-
-<!-- ================= TESTIMONIALS ================= -->
-<section class="py-20 bg-blue-50 text-center overflow-hidden">
-  <h2 class="text-3xl font-bold text-[#2b4c7e] mb-10">What Students Say</h2>
-
-  <div class="relative w-full  px-4 sm:px-0">
-
-    <!-- Slider Track -->
-    <div class="flex gap-6 animate-slide min-w-max">
-
-      <!-- Card -->
-      <div class="bg-white p-6 rounded-xl shadow w-[280px] flex-shrink-0">
-        <img src="https://i.pravatar.cc/100?img=1" class="w-16 h-16 rounded-full mx-auto mb-3">
-        <p class="text-sm">"Amazing platform for managing studies!"</p>
-        <h4 class="mt-2 font-medium text-sm text-gray-700">Rahul</h4>
+    <div class="hidden peer-checked:block md:hidden bg-white border-t border-gray-200 px-4 py-4">
+      <div class="space-y-3 text-sm text-gray-700">
+        <a class="block py-2 rounded-lg hover:bg-gray-100">Home</a>
+        <a class="block py-2 rounded-lg hover:bg-gray-100">Features</a>
+        <a class="block py-2 rounded-lg hover:bg-gray-100">Resources</a>
+        <a class="block py-2 rounded-lg hover:bg-gray-100">Why Us</a>
+        <button class="w-full bg-blue-500 text-white px-4 py-2 rounded-full shadow hover:scale-105 transition">Sign
+          In</button>
       </div>
+    </div>
+  </header>
 
-      <div class="bg-white p-6 rounded-xl shadow w-[280px] flex-shrink-0">
-        <img src="https://i.pravatar.cc/100?img=2" class="w-16 h-16 rounded-full mx-auto mb-3">
-        <p class="text-sm">"Improved my GPA easily."</p>
-        <h4 class="mt-2 font-medium text-sm text-gray-700">Priya</h4>
-      </div>
+  <!-- ================= HERO ================= -->
+  <section class="relative text-[#2b4c7e] bg-no-repeat bg-bottom bg-cover min-h-[70vh] sm:min-h-[75vh]"
+    style="background-image: url('img/hero.png');">
 
-      <div class="bg-white p-6 rounded-xl shadow w-[280px] flex-shrink-0">
-        <img src="https://i.pravatar.cc/100?img=3" class="w-16 h-16 rounded-full mx-auto mb-3">
-        <p class="text-sm">"Very useful platform."</p>
-        <h4 class="mt-2 font-medium text-sm text-gray-700">Amit</h4>
-      </div>
+    <div class="absolute inset-0 bg-gradient-to-b "></div>
 
-      <div class="bg-white p-6 rounded-xl shadow w-[280px] flex-shrink-0">
-        <img src="https://i.pravatar.cc/100?img=4" class="w-16 h-16 rounded-full mx-auto mb-3">
-        <p class="text-sm">"Best system for students!"</p>
-        <h4 class="mt-2 font-medium text-sm text-gray-700">Neha</h4>
-      </div>
+    <div class="relative z-10 flex flex-col items-center justify-center text-center px-4 sm:px-6 pt-20 pb-28 sm:pb-40">
 
-      <!-- Duplicate for smooth loop -->
-      <div class="bg-white p-6 rounded-xl shadow w-[280px] flex-shrink-0">
-        <img src="https://i.pravatar.cc/100?img=1" class="w-16 h-16 rounded-full mx-auto mb-3">
-        <p class="text-sm">"Amazing platform for managing studies!"</p>
-        <h4 class="mt-2 font-medium text-sm text-gray-700">Rahul</h4>
+      <h1 class="text-2xl sm:text-4xl md:text-5xl font-bold mb-5 leading-tight">
+        Smart Digital Classroom <br class="hidden sm:block">For Modern Learning
+      </h1>
+
+      <p class="text-gray-700 max-w-xl mb-6">
+        Manage timetable, calculate GPA, and boost learning with quizzes — all in one platform.
+      </p>
+
+      <div class="flex gap-3 flex-col sm:flex-row">
+        <button class="bg-[#e74c3c] px-6 py-2.5 rounded-lg text-white shadow hover:scale-105 transition">
+          Get Started
+        </button>
+        <a href="login.html" class="bg-[#2d6cdf] px-6 py-2.5 rounded-lg text-white shadow hover:scale-105 transition">
+          Login
+        </a>
       </div>
 
     </div>
+
+    <div class="absolute bottom-0 w-full h-16 bg-[#f3f6fb] rounded-t-[30px]"></div>
+  </section>
+
+
+  <!-- ================= FEATURES (IMPROVED) ================= -->
+  <section class="max-w-7xl mx-auto px-4 py-16 text-center">
+    <h2 class="text-3xl sm:text-4xl font-bold text-[#2b4c7e] mb-10">Powerful Features</h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+        <div class="text-4xl mb-3">📅</div>
+        <h3 class="font-semibold mb-2">Smart Scheduling</h3>
+        <p class="text-sm text-gray-600">Auto generate and manage timetables efficiently</p>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+        <div class="text-4xl mb-3">📊</div>
+        <h3 class="font-semibold mb-2">Performance Tracking</h3>
+        <p class="text-sm text-gray-600">Calculate GPA and monitor progress</p>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+        <div class="text-4xl mb-3">🧠</div>
+        <h3 class="font-semibold mb-2">Interactive Learning</h3>
+        <p class="text-sm text-gray-600">Daily quizzes to boost knowledge</p>
+      </div>
+
+    </div>
+  </section>
+  <section class="max-w-7xl mx-auto px-4 py-20">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+
+      <!-- LEFT IMAGE -->
+      <div class="relative">
+        <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94"
+          class="rounded-2xl shadow-lg w-full h-72 sm:h-[350px] object-cover">
+
+        <!-- small overlay card -->
+        <div class="absolute bottom-4 left-4 bg-white p-4 rounded-xl shadow-md">
+          <h4 class="text-sm font-semibold text-blue-600">10K+ Students</h4>
+          <p class="text-xs text-gray-500">Trust our platform</p>
+        </div>
+      </div>
+
+      <!-- RIGHT CONTENT -->
+      <div>
+
+        <h2 class="text-3xl font-bold text-[#2b4c7e] mb-5">
+          About Smart Classroom
+        </h2>
+
+        <p class="text-gray-600 mb-4 leading-relaxed">
+          Smart Classroom is a modern digital learning platform designed to simplify student life.
+          From managing timetables to tracking academic performance, we bring everything into one place.
+        </p>
+
+        <p class="text-gray-600 mb-6 leading-relaxed">
+          Our goal is to provide students with smart tools that improve productivity, save time,
+          and enhance learning experiences in a simple and effective way.
+        </p>
+
+        <!-- Points -->
+        <div class="space-y-3 text-sm text-gray-700">
+          <p>✔ Easy to use interface</p>
+          <p>✔ All-in-one academic tools</p>
+          <p>✔ Designed for students & teachers</p>
+          <p>✔ Modern and responsive design</p>
+        </div>
+
+        <!-- Button -->
+        <button class="mt-6 bg-blue-500 text-white px-6 py-2 rounded-lg shadow hover:scale-105 transition">
+          Learn More
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+  <!-- ================= WHY US ================= -->
+  <section class="bg-white py-20">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+
+      <div>
+        <h2 class="text-3xl font-bold text-[#2b4c7e] mb-6">Why Choose Smart Classroom?</h2>
+
+        <ul class="space-y-4 text-gray-600">
+          <li>✔ Easy to use interface</li>
+          <li>✔ All tools in one platform</li>
+          <li>✔ Saves time & improves productivity</li>
+          <li>✔ Designed for modern students</li>
+        </ul>
+      </div>
+
+      <div class="bg-blue-100 p-10 rounded-2xl text-center">
+        <h3 class="text-xl font-semibold mb-2">Better Learning Experience</h3>
+        <p class="text-sm text-gray-600">Everything you need to succeed in one place</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= TESTIMONIALS ================= -->
+  <section class="py-20 bg-blue-50 text-center overflow-hidden">
+    <h2 class="text-3xl font-bold text-[#2b4c7e] mb-10">What Students Say</h2>
+
+    <div class="relative w-full  px-4 sm:px-0">
+
+      <!-- Slider Track -->
+      <div class="flex gap-6 animate-slide min-w-max">
+
+        <!-- Card -->
+        <div class="bg-white p-6 rounded-xl shadow w-[280px] flex-shrink-0">
+          <img src="https://i.pravatar.cc/100?img=1" class="w-16 h-16 rounded-full mx-auto mb-3">
+          <p class="text-sm">"Amazing platform for managing studies!"</p>
+          <h4 class="mt-2 font-medium text-sm text-gray-700">Rahul</h4>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow w-[280px] flex-shrink-0">
+          <img src="https://i.pravatar.cc/100?img=2" class="w-16 h-16 rounded-full mx-auto mb-3">
+          <p class="text-sm">"Improved my GPA easily."</p>
+          <h4 class="mt-2 font-medium text-sm text-gray-700">Priya</h4>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow w-[280px] flex-shrink-0">
+          <img src="https://i.pravatar.cc/100?img=3" class="w-16 h-16 rounded-full mx-auto mb-3">
+          <p class="text-sm">"Very useful platform."</p>
+          <h4 class="mt-2 font-medium text-sm text-gray-700">Amit</h4>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow w-[280px] flex-shrink-0">
+          <img src="https://i.pravatar.cc/100?img=4" class="w-16 h-16 rounded-full mx-auto mb-3">
+          <p class="text-sm">"Best system for students!"</p>
+          <h4 class="mt-2 font-medium text-sm text-gray-700">Neha</h4>
+        </div>
+
+        <!-- Duplicate for smooth loop -->
+        <div class="bg-white p-6 rounded-xl shadow w-[280px] flex-shrink-0">
+          <img src="https://i.pravatar.cc/100?img=1" class="w-16 h-16 rounded-full mx-auto mb-3">
+          <p class="text-sm">"Amazing platform for managing studies!"</p>
+          <h4 class="mt-2 font-medium text-sm text-gray-700">Rahul</h4>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- CSS Animation -->
+  <style>
+    @keyframes slide {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    .animate-slide {
+      animation: slide 20s linear infinite;
+    }
+  </style>
+  <!-- ================= CHATBOT ================= -->
+  <div class="fixed bottom-5 right-5">
+    <button onclick="openChat()" class="bg-blue-600 text-white p-4 rounded-full shadow-lg hover:scale-110 transition">
+      💬
+    </button>
   </div>
-</section>
+  <div id="chatBox" class="hidden fixed bottom-0 right-0 md:bottom-6 md:right-6 w-full md:w-[360px] h-full md:h-[600px]
+bg-white dark:bg-gray-800 rounded-t-3xl md:rounded-3xl shadow-2xl flex flex-col overflow-hidden z-50">
 
-<!-- CSS Animation -->
-<style>
-@keyframes slide {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
+    <!-- HEADER -->
+    <div class="flex justify-between items-center p-4 border-b dark:border-gray-700">
 
-.animate-slide {
-  animation: slide 20s linear infinite;
-}
-</style>
-<!-- ================= CHATBOT ================= -->
-<div class="fixed bottom-5 right-5">
-<button class="bg-blue-600 text-white p-4 rounded-full shadow-lg hover:scale-110 transition">
-💬
-</button>
-</div>
+      <div>
+        <h1 class="font-semibold text-gray-800 dark:text-white">Your Project</h1>
+        <p class="text-xs text-gray-500">AI Assistant</p>
+      </div>
 
-<!-- ================= FOOTER ================= -->
-<footer class="bg-[#2b4c7e] text-white py-10 text-center">
-<h3 class="font-semibold mb-2">Smart Classroom</h3>
-<p class="text-sm text-gray-200">© 2026 All rights reserved</p>
-</footer>
+      <div class="flex gap-2 items-center">
+        <button onclick="closeChat()">✖</button>
+      </div>
+
+    </div>
+
+    <!-- SCREENS -->
+    <div class="flex-1 overflow-y-auto">
+
+      <!-- HOME -->
+      <div id="homeScreen" class="p-5 space-y-5">
+
+        <div onclick="openChatScreen()"
+          class="border p-4 rounded-xl cursor-pointer flex justify-between hover:bg-gray-50 dark:hover:bg-gray-700">
+
+          <div>
+            <p class="font-semibold text-gray-800 dark:text-white">Start Chat</p>
+            <p class="text-sm text-gray-500">We respond instantly</p>
+          </div>
+          ➤
+        </div>
+        <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-xl">
+          <h2 class="font-semibold mb-2 text-gray-700 dark:text-white">Recent</h2>
+
+          <div onclick="openMessages()" class="cursor-pointer text-sm">
+            <p class="text-gray-500">Last chat</p>
+            <p class="text-gray-800 dark:text-gray-200">Hello! How can I help?</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- MESSAGES -->
+      <div id="messagesScreen" class="hidden p-5 space-y-5">
+
+        <h2 class="text-lg font-semibold text-gray-800 dark:text-white">Messages</h2>
+
+        <div onclick="openChatScreen()"
+          class="border p-4 rounded-xl cursor-pointer flex justify-between hover:bg-gray-50 dark:hover:bg-gray-700">
+
+          <div>
+            <p class="font-semibold text-gray-800 dark:text-white">New Chat</p>
+            <p class="text-sm text-gray-500">We respond instantly</p>
+          </div>
+          ➤
+        </div>
+
+      </div>
+
+      <!-- CHAT -->
+      <div id="chatScreen" class="hidden flex flex-col h-full">
+
+        <!-- CHAT AREA -->
+        <div id="chatArea" class="flex-1 p-4 space-y-4 overflow-y-auto">
+
+          <div class="bg-gray-200 dark:bg-gray-700 p-3 rounded-xl max-w-xs text-sm">
+            Hello 👋 How can I help you today?
+          </div>
+
+        </div>
+
+        <!-- INPUT -->
+        <div class="p-3 border-t dark:border-gray-700 flex gap-2">
+
+          <input id="msg" class="flex-1 border dark:border-gray-600 rounded-xl px-3 py-2 text-sm
+        bg-white dark:bg-gray-700 text-gray-800 dark:text-white outline-none" placeholder="Type a message..." />
+
+          <button onclick="sendMsg()" class="bg-black dark:bg-white text-white dark:text-black px-4 rounded-xl">
+            ➤
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- BOTTOM NAV -->
+    <div class="border-t dark:border-gray-700 flex justify-around p-3 text-gray-600 dark:text-gray-300">
+
+      <button onclick="showScreen('homeScreen')">🏠</button>
+      <button onclick="showScreen('messagesScreen')">💬</button>
+
+    </div>
+
+  </div>
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-[#2b4c7e] text-white py-10 text-center">
+    <h3 class="font-semibold mb-2">Smart Classroom</h3>
+    <p class="text-sm text-gray-200">© 2026 All rights reserved</p>
+  </footer>
 
 </body>
+<script>
+
+  // OPEN / CLOSE
+  function openChat() {
+    document.getElementById("chatBox").classList.remove("hidden");
+  }
+  function closeChat() {
+    document.getElementById("chatBox").classList.add("hidden");
+  }
+
+  // DARK MODE
+  function toggleDark() {
+    document.body.classList.toggle("dark");
+  }
+
+  // SCREEN SWITCH
+  function showScreen(id) {
+    ["homeScreen", "messagesScreen", "chatScreen"].forEach(s => {
+      document.getElementById(s).classList.add("hidden");
+    });
+    document.getElementById(id).classList.remove("hidden");
+  }
+
+  function openMessages() {
+    showScreen("messagesScreen");
+  }
+
+  function openChatScreen() {
+    showScreen("chatScreen");
+  }
+
+  // SEND MESSAGE
+  function sendMsg() {
+    let input = document.getElementById("msg");
+    let val = input.value.trim();
+    if (!val) return;
+
+    let chat = document.getElementById("chatArea");
+
+    // USER
+    let user = document.createElement("div");
+    user.className = "bg-black text-white dark:bg-white dark:text-black p-3 rounded-xl max-w-xs ml-auto text-sm";
+    user.innerText = val;
+    chat.appendChild(user);
+
+    input.value = "";
+
+    // AI
+    setTimeout(() => {
+      let ai = document.createElement("div");
+      ai.className = "bg-gray-200 dark:bg-gray-700 p-3 rounded-xl max-w-xs text-sm";
+      ai.innerText = "This is a demo AI reply 🤖";
+      chat.appendChild(ai);
+
+      chat.scrollTop = chat.scrollHeight;
+    }, 700);
+  }
+
+</script>
+
 </html>

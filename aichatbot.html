@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+tailwind.config = {
+  darkMode: 'class'
+}
+</script>
+
+<title>AI Widget</title>
+</head>
+
+<body class="bg-gray-100 dark:bg-gray-900">
+
+<!-- FLOAT BUTTON -->
+<button onclick="openChat()"
+class="fixed bottom-6 right-6 bg-black dark:bg-white text-white dark:text-black w-14 h-14 rounded-full shadow-lg flex items-center justify-center text-xl z-50">
+💬
+</button>
+
+<!-- CHAT BOX -->
+<div id="chatBox"
+class="hidden fixed bottom-0 right-0 md:bottom-6 md:right-6 w-full md:w-[360px] h-full md:h-[600px]
+bg-white dark:bg-gray-800 rounded-t-3xl md:rounded-3xl shadow-2xl flex flex-col overflow-hidden z-50">
+
+<!-- HEADER -->
+<div class="flex justify-between items-center p-4 border-b dark:border-gray-700">
+
+    <div>
+        <h1 class="font-semibold text-gray-800 dark:text-white">Your Project</h1>
+        <p class="text-xs text-gray-500">AI Assistant</p>
+    </div>
+
+    <div class="flex gap-2 items-center">
+        <button onclick="toggleDark()" class="text-sm">🌙</button>
+        <button onclick="closeChat()">✖</button>
+    </div>
+
+</div>
+
+<!-- SCREENS -->
+<div class="flex-1 overflow-y-auto">
+
+<!-- HOME -->
+<div id="homeScreen" class="p-5 space-y-5">
+
+    <p class="bg-gray-100 dark:bg-gray-700 p-4 rounded-xl text-center text-sm text-gray-700 dark:text-gray-200">
+        Start a conversation and our AI will help you instantly.
+    </p>
+
+    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-xl">
+        <h2 class="font-semibold mb-2 text-gray-700 dark:text-white">Recent</h2>
+
+        <div onclick="openMessages()" class="cursor-pointer text-sm">
+            <p class="text-gray-500">Last chat</p>
+            <p class="text-gray-800 dark:text-gray-200">Hello! How can I help?</p>
+        </div>
+    </div>
+
+</div>
+
+<!-- MESSAGES -->
+<div id="messagesScreen" class="hidden p-5 space-y-5">
+
+    <h2 class="text-lg font-semibold text-gray-800 dark:text-white">Messages</h2>
+
+    <div onclick="openChatScreen()"
+        class="border p-4 rounded-xl cursor-pointer flex justify-between hover:bg-gray-50 dark:hover:bg-gray-700">
+
+        <div>
+            <p class="font-semibold text-gray-800 dark:text-white">New Chat</p>
+            <p class="text-sm text-gray-500">We respond instantly</p>
+        </div>
+        ➤
+    </div>
+
+</div>
+
+<!-- CHAT -->
+<div id="chatScreen" class="hidden flex flex-col h-full">
+
+    <!-- CHAT AREA -->
+    <div id="chatArea" class="flex-1 p-4 space-y-4 overflow-y-auto">
+
+        <div class="bg-gray-200 dark:bg-gray-700 p-3 rounded-xl max-w-xs text-sm">
+            Hello 👋 How can I help you today?
+        </div>
+
+    </div>
+
+    <!-- INPUT -->
+    <div class="p-3 border-t dark:border-gray-700 flex gap-2">
+
+        <input id="msg"
+        class="flex-1 border dark:border-gray-600 rounded-xl px-3 py-2 text-sm
+        bg-white dark:bg-gray-700 text-gray-800 dark:text-white outline-none"
+        placeholder="Type a message..."/>
+
+        <button onclick="sendMsg()"
+        class="bg-black dark:bg-white text-white dark:text-black px-4 rounded-xl">
+        ➤
+        </button>
+
+    </div>
+
+</div>
+
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="border-t dark:border-gray-700 flex justify-around p-3 text-gray-600 dark:text-gray-300">
+
+    <button onclick="showScreen('homeScreen')">🏠</button>
+    <button onclick="showScreen('messagesScreen')">💬</button>
+
+</div>
+
+</div>
+
+<script>
+
+// OPEN / CLOSE
+function openChat(){
+    document.getElementById("chatBox").classList.remove("hidden");
+}
+function closeChat(){
+    document.getElementById("chatBox").classList.add("hidden");
+}
+
+// DARK MODE
+function toggleDark(){
+    document.body.classList.toggle("dark");
+}
+
+// SCREEN SWITCH
+function showScreen(id){
+    ["homeScreen","messagesScreen","chatScreen"].forEach(s=>{
+        document.getElementById(s).classList.add("hidden");
+    });
+    document.getElementById(id).classList.remove("hidden");
+}
+
+function openMessages(){
+    showScreen("messagesScreen");
+}
+
+function openChatScreen(){
+    showScreen("chatScreen");
+}
+
+// SEND MESSAGE
+function sendMsg(){
+    let input = document.getElementById("msg");
+    let val = input.value.trim();
+    if(!val) return;
+
+    let chat = document.getElementById("chatArea");
+
+    // USER
+    let user = document.createElement("div");
+    user.className = "bg-black text-white dark:bg-white dark:text-black p-3 rounded-xl max-w-xs ml-auto text-sm";
+    user.innerText = val;
+    chat.appendChild(user);
+
+    input.value = "";
+
+    // AI
+    setTimeout(()=>{
+        let ai = document.createElement("div");
+        ai.className = "bg-gray-200 dark:bg-gray-700 p-3 rounded-xl max-w-xs text-sm";
+        ai.innerText = "This is a demo AI reply 🤖";
+        chat.appendChild(ai);
+
+        chat.scrollTop = chat.scrollHeight;
+    },700);
+}
+
+</script>
+
+</body>
+</html>
