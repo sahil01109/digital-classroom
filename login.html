@@ -1,81 +1,243 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-  <meta charset="UTF-8">
-  <title>Responsive Login</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="./output.css" rel="stylesheet" />
+  <title>Login</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gray-100">
+<body class="min-h-screen bg-gray-50 dark:bg-gray-900 flex font-poppins items-center justify-center px-4 py-8">
 
-  <div class="min-h-screen flex items-center justify-center">
+  <div id="loginForm" class="min-h-screen w-full flex justify-center items-center">
+    <div class="grid gap-8 w-full max-w-xl mx-auto">
+      <div id="back-div" class="bg-gradient-to-r from-blue-500 to-purple-500 rounded-[26px] w-full">
+        <div
+          class="border-8 sm:border-[20px] border-transparent rounded-[20px] dark:bg-gray-900 bg-white shadow-lg p-6 sm:p-10 m-2">
+          <h1 class="pt-6 pb-5 font-bold dark:text-gray-400 text-4xl sm:text-5xl text-center cursor-default">
+            Log in
+          </h1>
+          <form action="#" method="post" onsubmit="handleLogin(event)" class="space-y-4">
+            <div>
+              <label for="email" class="mb-2  dark:text-gray-400 text-lg">Email</label>
+              <input id="email" name="email"
+                class="border p-3 dark:bg-indigo-700 dark:text-gray-300  dark:border-gray-700 shadow-md placeholder:text-base focus:scale-105 ease-in-out duration-300 border-gray-300 rounded-lg w-full"
+                type="email" placeholder="Email" autocomplete="email" required />
+            </div>
+            <div>
+              <label for="password" class="mb-2 dark:text-gray-400 text-lg">Password</label>
+              <input id="password" name="password"
+                class="border p-3 shadow-md dark:bg-indigo-700 dark:text-gray-300  dark:border-gray-700 placeholder:text-base focus:scale-105 ease-in-out duration-300 border-gray-300 rounded-lg w-full"
+                type="password" placeholder="Password" autocomplete="current-password" required />
+            </div>
+            <a class="group text-blue-400 transition-all duration-100 ease-in-out" href="#">
+              <span
+                class="bg-left-bottom bg-gradient-to-r text-sm from-blue-400 to-blue-400 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
+                Forget your password?
+              </span>
+            </a>
+            <button
+              class="bg-gradient-to-r dark:text-gray-300 from-blue-500 to-purple-500 shadow-lg mt-6 p-2 text-white rounded-lg w-full hover:scale-105 hover:from-purple-500 hover:to-blue-500 transition duration-300 ease-in-out"
+              type="submit">
+              LOG IN
+            </button>
+          </form>
+          <div class="flex flex-col mt-4 items-center justify-center text-sm">
+            <h3 class="dark:text-gray-300">
+              Don't have an account?
+              <button type="button" onclick="showSignup()"
+                class="group text-blue-400 transition-all duration-100 ease-in-out">
+                <span
+                  class="bg-left-bottom bg-gradient-to-r from-blue-400 to-blue-400 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
+                  Sign In
+                </span>
+              </button>
+            </h3>
+          </div>
+          <!-- Third Party Authentication Options -->
+          <div id="third-party-auth" class="flex items-center justify-center mt-5 flex-wrap">
+            <button type="button" class="hover:scale-105 ease-in-out duration-300 shadow-lg p-2 rounded-lg m-1">
+              <img class="max-w-[25px]" src="https://ucarecdn.com/8f25a2ba-bdcf-4ff1-b596-088f330416ef/" alt="Google" />
+            </button>
+            <button type="button" class="hover:scale-105 ease-in-out duration-300 shadow-lg p-2 rounded-lg m-1">
+              <img class="max-w-[25px]" src="https://ucarecdn.com/95eebb9c-85cf-4d12-942f-3c40d7044dc6/"
+                alt="Linkedin" />
+            </button>
+            <button type="button" class="hover:scale-105 ease-in-out duration-300 shadow-lg p-2 rounded-lg m-1">
+              <img class="max-w-[25px] filter dark:invert"
+                src="https://ucarecdn.com/be5b0ffd-85e8-4639-83a6-5162dfa15a16/" alt="Github" />
+            </button>
+            <button type="button" class="hover:scale-105 ease-in-out duration-300 shadow-lg p-2 rounded-lg m-1">
+              <img class="max-w-[25px]" src="https://ucarecdn.com/6f56c0f1-c9c0-4d72-b44d-51a79ff38ea9/"
+                alt="Facebook" />
+            </button>
+            <button type="button" class="hover:scale-105 ease-in-out duration-300 shadow-lg p-2 rounded-lg m-1">
+              <img class="max-w-[25px] dark:gray-100" src="https://ucarecdn.com/82d7ca0a-c380-44c4-ba24-658723e2ab07/"
+                alt="twitter" />
+            </button>
+            <button type="button" class="hover:scale-105 ease-in-out duration-300 shadow-lg p-2 rounded-lg m-1">
+              <img class="max-w-[25px]" src="https://ucarecdn.com/3277d952-8e21-4aad-a2b7-d484dad531fb/" alt="apple" />
+            </button>
+          </div>
 
-    <div class="flex w-full max-w-6xl bg-white shadow-xl rounded-2xl overflow-hidden">
-
-      <!-- LEFT SIDE (Hidden on mobile) -->
-      <div class="hidden md:flex w-1/2 bg-gradient-to-r from-blue-500 to-blue-700 items-center justify-center p-8">
-        <div class="text-white text-center">
-          <h1 class="text-3xl font-bold mb-4">Welcome Back!</h1>
-          <p class="text-sm opacity-90">
-            Smart Digital Classroom System
-          </p>
+          <div class="text-gray-500 flex text-center flex-col mt-4 items-center text-sm">
+            <p class="cursor-default">
+              By signing in, you agree to our
+              <a class="group text-blue-400 transition-all duration-100 ease-in-out" href="#">
+                <span
+                  class="cursor-pointer bg-left-bottom bg-gradient-to-r from-blue-400 to-blue-400 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
+                  Terms
+                </span>
+              </a>
+              and
+              <a class="group text-blue-400 transition-all duration-100 ease-in-out" href="#">
+                <span
+                  class="cursor-pointer bg-left-bottom bg-gradient-to-r from-blue-400 to-blue-400 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
+                  Privacy Policy
+                </span>
+              </a>
+            </p>
+          </div>
         </div>
       </div>
-
-      <!-- RIGHT SIDE (Login Form) -->
-      <div class="w-full md:w-1/2 p-6 sm:p-10">
-
-        <h2 class="text-2xl sm:text-3xl font-semibold text-center text-blue-700 mb-6">
-          Login to Your Account
-        </h2>
-
-        <form class="space-y-5">
-
-          <!-- Email -->
-          <div>
-            <label class="block text-gray-600 mb-1 text-sm sm:text-base">
-              Email
-            </label>
-            <input 
-              type="email"
-              placeholder="Enter your email"
-              class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 text-sm sm:text-base"
-            >
-          </div>
-
-          <!-- Password -->
-          <div>
-            <label class="block text-gray-600 mb-1 text-sm sm:text-base">
-              Password
-            </label>
-            <input 
-              type="password"
-              placeholder="Enter your password"
-              class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 text-sm sm:text-base"
-            >
-          </div>
-
-          <!-- Button -->
-          <button 
-            type="submit"
-            class="w-full bg-blue-600 text-white py-2 sm:py-3 rounded-lg hover:bg-blue-700 transition duration-300"
-          >
-            Login
-          </button>
-
-        </form>
-
-        <!-- Signup -->
-        <p class="text-xs sm:text-sm text-center text-gray-500 mt-5">
-          Don’t have an account?
-          <a href="#" class="text-blue-600 hover:underline">Sign Up</a>
-        </p>
-
-      </div>
-
     </div>
-
   </div>
-
+  <div id="signinForm" class="hidden">
+    <div class="min-h-screen w-full flex justify-center items-center">
+      <div class="grid gap-8 w-full max-w-xl mx-auto">
+        <div id="back-div" class="bg-gradient-to-r from-blue-500 to-purple-500 rounded-[26px] w-full">
+          <div
+            class="border-8 sm:border-[20px] border-transparent rounded-[20px] dark:bg-gray-900 bg-white shadow-lg p-6 sm:p-10 m-2">
+            <h1 class="pt-6 pb-5 font-bold dark:text-gray-400 text-4xl sm:text-5xl text-center cursor-default">
+              Sign In
+            </h1>
+            <form onsubmit="handleSignup(event)" class="space-y-4">
+              <div>
+                <label for="signupName" class="mb-2 dark:text-gray-400 text-lg">Full Name</label>
+                <input id="signupName" name="fullname" type="text" placeholder="Full Name"
+                  class="border p-3 w-full rounded-lg shadow-md focus:scale-105 duration-300 dark:bg-indigo-700 dark:text-gray-300 dark:border-gray-700"
+                  required />
+              </div>
+              <div>
+                <label for="signupEmail" class="mb-2 dark:text-gray-400 text-lg">Email</label>
+                <input id="signupEmail" name="email" type="email" placeholder="Email"
+                  class="border p-3 w-full rounded-lg shadow-md focus:scale-105 duration-300 dark:bg-indigo-700 dark:text-gray-300 dark:border-gray-700"
+                  required />
+              </div>
+              <div>
+                <label for="signupPassword" class="mb-2 dark:text-gray-400 text-lg">Password</label>
+                <input id="signupPassword" name="password" type="password" placeholder="Password"
+                  class="border p-3 w-full rounded-lg shadow-md focus:scale-105 duration-300 dark:bg-indigo-700 dark:text-gray-300 dark:border-gray-700"
+                  required />
+              </div>
+              <div>
+                <label for="signupConfirmPassword" class="mb-2 dark:text-gray-400 text-lg">Confirm Password</label>
+                <input id="signupConfirmPassword" name="confirmPassword" type="password" placeholder="Confirm Password"
+                  class="border p-3 w-full rounded-lg shadow-md focus:scale-105 duration-300 dark:bg-indigo-700 dark:text-gray-300 dark:border-gray-700"
+                  required />
+              </div>
+              <button type="submit"
+                class="bg-gradient-to-r from-blue-500 to-purple-500 dark:text-gray-300 shadow-lg mt-6 p-2 text-white rounded-lg w-full hover:scale-105 hover:from-purple-500 hover:to-blue-500 transition duration-300 ease-in-out">
+                CREATE ACCOUNT
+              </button>
+            </form>
+            <div class="flex flex-col mt-4 items-center justify-center text-sm">
+              <h3 class="dark:text-gray-300">Or sign in with</h3>
+              <div class="flex items-center justify-center mt-3 gap-2 flex-wrap">
+                <button type="button" class="hover:scale-105 ease-in-out duration-300 shadow-lg p-2 rounded-lg m-1">
+                  <img class="max-w-[25px]" src="https://ucarecdn.com/8f25a2ba-bdcf-4ff1-b596-088f330416ef/"
+                    alt="Google" />
+                </button>
+                <button type="button" class="hover:scale-105 ease-in-out duration-300 shadow-lg p-2 rounded-lg m-1">
+                  <img class="max-w-[25px]" src="https://ucarecdn.com/95eebb9c-85cf-4d12-942f-3c40d7044dc6/"
+                    alt="Linkedin" />
+                </button>
+                <button type="button" class="hover:scale-105 ease-in-out duration-300 shadow-lg p-2 rounded-lg m-1">
+                  <img class="max-w-[25px] filter dark:invert"
+                    src="https://ucarecdn.com/be5b0ffd-85e8-4639-83a6-5162dfa15a16/" alt="Github" />
+                </button>
+                <button type="button" class="hover:scale-105 ease-in-out duration-300 shadow-lg p-2 rounded-lg m-1">
+                  <img class="max-w-[25px]" src="https://ucarecdn.com/6f56c0f1-c9c0-4d72-b44d-51a79ff38ea9/"
+                    alt="Facebook" />
+                </button>
+                <button type="button" class="hover:scale-105 ease-in-out duration-300 shadow-lg p-2 rounded-lg m-1">
+                  <img class="max-w-[25px] dark:gray-100"
+                    src="https://ucarecdn.com/82d7ca0a-c380-44c4-ba24-658723e2ab07/" alt="Twitter" />
+                </button>
+                <button type="button" class="hover:scale-105 ease-in-out duration-300 shadow-lg p-2 rounded-lg m-1">
+                  <img class="max-w-[25px]" src="https://ucarecdn.com/3277d952-8e21-4aad-a2b7-d484dad531fb/"
+                    alt="Apple" />
+                </button>
+              </div>
+            </div>
+            <div class="flex flex-col mt-4 items-center justify-center text-sm">
+              <h3 class="dark:text-gray-300">
+                Already have an account?
+                 <button type="button" onclick="showLogin()"
+                class="group text-blue-400 transition-all duration-100 ease-in-out">
+                <span
+                  class="bg-left-bottom bg-gradient-to-r from-blue-400 to-blue-400 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
+                  Log In
+                </span>
+              </button>
+              </h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
+<script>
+  function showLogin() {
+    document.getElementById("loginForm").classList.remove("hidden");
+    document.getElementById("signinForm").classList.add("hidden");
+  }
+
+  function showSignup() {
+    document.getElementById("signinForm").classList.remove("hidden");
+    document.getElementById("loginForm").classList.add("hidden");
+  }
+
+  function handleLogin(event) {
+    event.preventDefault();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    if (!email || !password) {
+      alert("Please enter both email and password.");
+      return;
+    }
+
+    alert(`Logging in as ${email}`);
+  }
+
+  function handleSignup(event) {
+    event.preventDefault();
+    const name = document.getElementById("signupName").value.trim();
+    const email = document.getElementById("signupEmail").value.trim();
+    const password = document.getElementById("signupPassword").value.trim();
+    const confirmPassword = document.getElementById("signupConfirmPassword").value.trim();
+
+    if (!name || !email || !password || !confirmPassword) {
+      alert("Please complete all signup fields.");
+      return;
+    }
+    if (password !== confirmPassword) {
+      alert("Passwords do not match.");
+      return;
+    }
+
+    alert(`Account created for ${name}`);
+    showLogin();
+  }
+</script>
+
 </html>
